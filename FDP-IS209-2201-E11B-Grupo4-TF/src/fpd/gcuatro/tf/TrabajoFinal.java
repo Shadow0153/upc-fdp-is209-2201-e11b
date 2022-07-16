@@ -22,6 +22,7 @@ public class TrabajoFinal {
 
     static String tipoDocumentoIdentidad = "";
     static String numeroDocumentoIdentidad = "";
+    static String nombreRazonSocialCliente = "";
 
     public static void main(String[] args) throws IOException {
         System.out.println("");
@@ -121,6 +122,7 @@ public class TrabajoFinal {
                 if (numeroDocumentoIdentidad.length() != 8) {
                     System.out.println("\tNumero de documento ingresado no es valido...");
                 } else {
+                    nombreRazonSocialCliente = scanner.next();
                     System.out.println("\tEl cliente es personal natural");
                     condicional = !condicional;
                 }
@@ -132,8 +134,11 @@ public class TrabajoFinal {
                 if (numeroDocumentoIdentidad.length() != 11) {
                     System.out.println("\tNumero de documento ingresado no es valido...");
                 } else if (numeroDocumentoIdentidad.length() == 11 && numeroDocumentoIdentidad.substring(0, 1).equalsIgnoreCase("1")) {
+                    nombreRazonSocialCliente = scanner.next();
                     System.out.println("\tEl cliente es personal natural con negocio");
+                    condicional = !condicional;
                 } else if (numeroDocumentoIdentidad.length() == 11 && numeroDocumentoIdentidad.substring(0, 1).equalsIgnoreCase("2")) {
+                    nombreRazonSocialCliente = scanner.next();
                     System.out.println("\tEl cliente es personal juridica");
                     condicional = !condicional;
                 }
@@ -218,6 +223,7 @@ public class TrabajoFinal {
         System.out.println("El codigo de pedido es             : " + CodigoPedido);
         System.out.println("Tipo Documento Identidad Cliente   : " + tipoDocumentoIdentidad);
         System.out.println("Numero Documento Identidad Cliente : " + numeroDocumentoIdentidad);
+        System.out.println("Nombre o Razon Social Cliente      : " + nombreRazonSocialCliente);
 
         System.out.println("====================================================================================================");
         System.out.println("Item" + "\t" + "Codigo" + "\t" + "Descripcion" + "\t\t\t\t\t\t\t\t" + "Cantidad" + "\t\t" + "% Descuento" + "\t\t" + "Precio");
