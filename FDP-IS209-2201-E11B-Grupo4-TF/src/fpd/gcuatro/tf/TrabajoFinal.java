@@ -122,8 +122,10 @@ public class TrabajoFinal {
                 if (numeroDocumentoIdentidad.length() != 8) {
                     System.out.println("\tNumero de documento ingresado no es valido...");
                 } else {
+                    System.out.println("\tIngrese nombre del cliente");
                     nombreRazonSocialCliente = scanner.next();
                     System.out.println("\tEl cliente es personal natural");
+                    System.out.println("\tCliente registrado exitosamente");
                     condicional = !condicional;
                 }
 
@@ -134,12 +136,15 @@ public class TrabajoFinal {
                 if (numeroDocumentoIdentidad.length() != 11) {
                     System.out.println("\tNumero de documento ingresado no es valido...");
                 } else if (numeroDocumentoIdentidad.length() == 11 && numeroDocumentoIdentidad.substring(0, 1).equalsIgnoreCase("1")) {
+                    System.out.println("\tIngrese nombre del cliente");
                     nombreRazonSocialCliente = scanner.next();
                     System.out.println("\tEl cliente es personal natural con negocio");
                     condicional = !condicional;
                 } else if (numeroDocumentoIdentidad.length() == 11 && numeroDocumentoIdentidad.substring(0, 1).equalsIgnoreCase("2")) {
+                    System.out.println("\tIngrese nombre del cliente");
                     nombreRazonSocialCliente = scanner.next();
                     System.out.println("\tEl cliente es personal juridica");
+                    System.out.println("\tCliente registrado exitosamente");
                     condicional = !condicional;
                 }
 
