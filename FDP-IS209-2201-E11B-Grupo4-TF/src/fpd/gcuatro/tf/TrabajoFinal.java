@@ -1,5 +1,7 @@
 package fpd.gcuatro.tf;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -96,6 +98,34 @@ public class TrabajoFinal {
         } else {
             System.out.println("\tEl codigo ingresado no es valido...");
         }
+    }
+    private static void verPedidos() {
+        System.out.println("");
+        System.out.println("");
+        System.out.println("====================================================================================================");
+        System.out.println("====================================================================================================");
+        String CodigoPedido = "P2022" + String.format("%05d", 1);
+        System.out.println("PERU FARMA\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+        float totalPrecioPedido = 0;
+        System.out.println("El codigo de pedido es             : " + CodigoPedido);
+        System.out.println("Tipo Documento Identidad Cliente   : " + tipoDocumentoIdentidad);
+        System.out.println("Numero Documento Identidad Cliente : " + numeroDocumentoIdentidad);
+
+        System.out.println("====================================================================================================");
+        System.out.println("Item" + "\t" + "Codigo" + "\t" + "Descripcion" + "\t\t\t\t\t\t\t\t" + "Cantidad" + "\t\t" + "% Descuento" + "\t\t" + "Precio");
+
+        for (int i = 0; i < productoCodigoPedido.size(); i++) {
+            System.out.println((i + 1) + "\t\t" + productoCodigoPedido.get(i) + "\t" + productoDescripcionPedido.get(i) + "\t\t" + productoCantidadPedido.get(i) + "\t\t\t\t" + productoDescuentoPedido.get(i) + "%\t\t\t\t" + String.format("%.2f", productoPrecioPedido.get(i)));
+            totalPrecioPedido += productoPrecioPedido.get(i);
+        }
+        System.out.println("====================================================================================================");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTOTAL:");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + String.format("%.2f", totalPrecioPedido) + " SOLES");
+        System.out.println("====================================================================================================");
+        System.out.println("====================================================================================================");
+
+        System.out.println("");
+        System.out.println("");
     }
 
     private static void inicializar() {
