@@ -1,6 +1,8 @@
 package fpd.gcuatro.tf;
 
 import java.util.LinkedList;
+import java.util.Scanner;
+
 
 public class TrabajoFinal {
     //Arreglos de productos
@@ -33,6 +35,67 @@ public class TrabajoFinal {
         //Inicializar arreglos
         inicializar();
 
+    }
+
+    private static void registraPedidos() {
+        Scanner scanner = new Scanner(System.in);
+        int indiceCodigoProducto = -1;
+
+        System.out.println("\tIngrese el codigo del producto");
+        String codigoProductoPedido = scanner.next();
+
+        for (int i = 0; i < productoCodigo.length; i++) {
+            if (codigoProductoPedido.equalsIgnoreCase(productoCodigo[i])) {
+                indiceCodigoProducto = i;
+            }
+        }
+
+        if (indiceCodigoProducto > -1) {
+            System.out.println("\tEl producto seleccionado es: " + productoDescripcion[indiceCodigoProducto]);
+            System.out.println("\tEl precio unitario es : " + productoPrecio[indiceCodigoProducto]);
+
+            System.out.println("\tIngrese la cantidad del pedido");
+            int cantidadProductoPedido = scanner.nextInt();
+
+            if (cantidadProductoPedido > 0) {
+                if (cantidadProductoPedido <= productoCantidadStock[indiceCodigoProducto]) {
+                    productoCodigoPedido.add(productoCodigo[indiceCodigoProducto]);
+                    productoDescripcionPedido.add(productoDescripcion[indiceCodigoProducto]);
+                    productoCantidadPedido.add(cantidadProductoPedido);
+                    System.out.println("\tPedido registrado");
+
+                    System.out.println("\tDesea ingresar descuento? SI / NO");
+                    String tieneDescuento = scanner.next();
+
+                    float precio = productoPrecio[indiceCodigoProducto] * cantidadProductoPedido;
+                    int porcentajeDescuento = 0;
+
+                    if (tieneDescuento.equalsIgnoreCase("SI")) {
+                        System.out.println("\tIngrese el porcentaje de descuento");
+                        porcentajeDescuento = scanner.nextInt();
+
+                        float descuento = (precio * porcentajeDescuento) / 100;
+
+                        productoPrecioPedido.add(precio - descuento);
+                        System.out.println("\tEl descuento es de: " + descuento);
+                        productoDescuentoPedido.add(porcentajeDescuento);
+
+                    } else {
+                        productoPrecioPedido.add(precio);
+                        productoDescuentoPedido.add(porcentajeDescuento);
+                    }
+
+
+                } else {
+                    System.out.println("\tNo se disponen de suficientes unidades para atender el pedido...");
+                }
+            } else {
+                System.out.println("\tLa cantidad ingresada debe ser mayor a 0 unidades...");
+            }
+
+        } else {
+            System.out.println("\tEl codigo ingresado no es valido...");
+        }
     }
 
     private static void inicializar() {
