@@ -1,5 +1,6 @@
 package fpd.gcuatro.tf;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ public class TrabajoFinal {
     static String tipoDocumentoIdentidad = "";
     static String numeroDocumentoIdentidad = "";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("");
         System.out.println("==================================================");
         System.out.println("============FUNDAMENTOS DE PROGRAMACION===========");
@@ -36,6 +37,72 @@ public class TrabajoFinal {
 
         //Inicializar arreglos
         inicializar();
+
+        boolean condicion = true;
+
+        while (condicion) {
+
+            System.out.println("==================================================");
+            System.out.println("=========APLICATIVO DE REGISTRO DE PEDIDOS========");
+            System.out.println("===================DE MERCANCIAS==================");
+            System.out.println("==================================================");
+            System.out.println("Menu:");
+            System.out.println("\tDatos de cliente                            1");
+            System.out.println("\tRegistro de pedidos                         2");
+            System.out.println("\tVer detalle de pedidos                      3");
+            System.out.println("\tSalir del sistema                           4");
+            System.out.println("\t=============================================");
+
+            System.out.println("\tIngrese el numero de la opcion:");
+
+            Scanner scanner = new Scanner(System.in);
+
+            int opcionSistema = scanner.nextInt();
+
+            switch (opcionSistema) {
+                case 1:
+                    System.out.println("La opcion selecionada es registrar datos de cliente");
+                    registrarDatosCliente();
+                    break;
+                case 2:
+                    if (!tipoDocumentoIdentidad.equalsIgnoreCase("") && !numeroDocumentoIdentidad.equalsIgnoreCase("")) {
+                        System.out.println("La opcion selecionada es registrar pedido");
+                        boolean registrarMasPedidos = true;
+                        do {
+                            registraPedidos();
+                            System.out.println("\tDesea registrar mas pedidos? SI / NO");
+                            if (scanner.next().equalsIgnoreCase("NO")) {
+                                registrarMasPedidos = !registrarMasPedidos;
+                            }
+                        } while (registrarMasPedidos);
+                    } else {
+                        System.out.println("Primero debe registrar los datos del cliente");
+                    }
+                    break;
+                case 3:
+                    if (!tipoDocumentoIdentidad.equalsIgnoreCase("") && !numeroDocumentoIdentidad.equalsIgnoreCase("")) {
+                        if (productoCodigoPedido.size() > 0) {
+                            System.out.println("La opcion selecionada es ver pedido");
+                            verPedidos();
+                            System.out.println("Presione la tecla \"ENTER\" para finalizar...");
+                            System.in.read();
+                            condicion = !condicion;
+                        } else {
+                            System.out.println("Antes debe de tener registrado el menos un pedido");
+                        }
+                    } else {
+                        System.out.println("Primero debe registrar los datos del cliente");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Saliendo del sistema, muchas gracias!");
+                    condicion = !condicion;
+                    break;
+                default:
+                    System.out.println("La opcion marcada no es correcta");
+                    break;
+            }
+        }
 
     }
 
