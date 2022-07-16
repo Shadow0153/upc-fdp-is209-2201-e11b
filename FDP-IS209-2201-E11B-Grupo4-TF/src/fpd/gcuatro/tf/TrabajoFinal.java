@@ -22,7 +22,7 @@ public class TrabajoFinal {
     static String tipoDocumentoIdentidad = "";
     static String numeroDocumentoIdentidad = "";
 
-    public static void main (String[] args){
+    public static void main(String[] args) {
         System.out.println("");
         System.out.println("==================================================");
         System.out.println("============FUNDAMENTOS DE PROGRAMACION===========");
@@ -38,6 +38,46 @@ public class TrabajoFinal {
         inicializar();
 
     }
+
+    private static void registrarDatosCliente() {
+        Scanner scanner = new Scanner(System.in);
+        boolean condicional = true;
+
+        do {
+            System.out.println("\tIngrese Tipo de documento de Identidad DNI / RUC");
+            tipoDocumentoIdentidad = scanner.next().toUpperCase();
+
+            if (tipoDocumentoIdentidad.equalsIgnoreCase("DNI")) {
+                System.out.println("\tIngrese numero de documento de Identidad");
+                numeroDocumentoIdentidad = scanner.next();
+
+                if (numeroDocumentoIdentidad.length() != 8) {
+                    System.out.println("\tNumero de documento ingresado no es valido...");
+                } else {
+                    System.out.println("\tEl cliente es personal natural");
+                    condicional = !condicional;
+                }
+
+            } else if (tipoDocumentoIdentidad.equalsIgnoreCase("RUC")) {
+                System.out.println("\tIngrese numero de documento de Identidad");
+                numeroDocumentoIdentidad = scanner.next();
+
+                if (numeroDocumentoIdentidad.length() != 11) {
+                    System.out.println("\tNumero de documento ingresado no es valido...");
+                } else if (numeroDocumentoIdentidad.length() == 11 && numeroDocumentoIdentidad.substring(0, 1).equalsIgnoreCase("1")) {
+                    System.out.println("\tEl cliente es personal natural con negocio");
+                } else if (numeroDocumentoIdentidad.length() == 11 && numeroDocumentoIdentidad.substring(0, 1).equalsIgnoreCase("2")) {
+                    System.out.println("\tEl cliente es personal juridica");
+                    condicional = !condicional;
+                }
+
+            } else {
+                System.out.println("\tTipo de documento ingresado no es valido...");
+                tipoDocumentoIdentidad = null;
+            }
+        } while (condicional);
+    }
+
 
     private static void registraPedidos() {
         Scanner scanner = new Scanner(System.in);
@@ -99,6 +139,7 @@ public class TrabajoFinal {
             System.out.println("\tEl codigo ingresado no es valido...");
         }
     }
+
     private static void verPedidos() {
         System.out.println("");
         System.out.println("");
